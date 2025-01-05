@@ -1,8 +1,9 @@
-const user=require('../models/usermodel')
+const User=require('../models/usermodel')
 const bcrypt=require('bcrypt')
 const jwt=require('jsonwebtoken')
 require('dotenv').config()
 const jwt_secret=process.env.JWT_SECRET
+
 
 const signupUser=async(req,res)=>{
     try {
@@ -16,12 +17,12 @@ const signupUser=async(req,res)=>{
             return res.status(400).json({error: "Please enter a valid email address"})
         }
         //validate password
-        if(password.length < 8){
-            return res.status(400).json({error: "Password must be at least 8 characters long"})
+        if(password.length < 6){
+            return res.status(400).json({error: "Password must be at least 6 characters long"})
         }
         const salt=10;
         const hashPassword=await bcrypt.hash(password,salt)
-        const newUser= await user.create({
+        const newUser= await User.create({
             name,
             email,
             password:hashPassword
@@ -43,7 +44,7 @@ const loginUser=async(req,res)=>{
             return res.status(400).json({error:"missing password field"})
         }
 
-        let owner= await user.findOne({email})
+        let owner= await User.findOne({email})
         if(!owner){
             return res.status(400).json({error:"wrong credentials ! login with valid one"})
         }
@@ -58,4 +59,20 @@ const loginUser=async(req,res)=>{
         return res.status(500).json({error:"internal server error"})
     }
 }
-module.exports={signupUser,loginUser}
+const getUser=async(req,res)=>{
+    try {
+        if (!req.user) {
+            return res.status(401).json({error: "Authentication required"});
+        }
+        const userId=req.user._id
+        const owner=await User.findById(userId).select('-password')
+        return res.status(200).json(owner)
+    } catch (error) {
+        console.log(error)
+        return res.status(500).json({error:"internal server error"})
+    }
+    
+
+
+}
+module.exports={signupUser,loginUser,getUser}
