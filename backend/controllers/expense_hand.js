@@ -120,8 +120,22 @@ const delExpense=async(req,res)=>{
         if (!expense) {
             return res.status(404).json({ error: "Expense not found or unauthorized" });
         }
-    
+        const amount=expense.amount;
+        const expenseDate=expense.date;
+        const month=expenseDate.getMonth()+1;
+        const year=expenseDate.getFullYear();
         await Expense.findByIdAndDelete(expenseId)
+        
+        await MonthSummary.findOneAndUpdate({
+            userId:userId,
+            month:month,
+            year:year
+        },
+        {
+            $inc:{totalExpense:-amount}
+        }
+    )
+
         return res.status(200).json({success:true,message:"deleted successfully"})
     } catch (error) {
         return res.status(500).json({ error: "Server error while deleting expense" });

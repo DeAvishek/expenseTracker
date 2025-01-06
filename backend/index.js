@@ -4,6 +4,7 @@ const app = express()
 const userRouter=require('./routes/user_route')
 const expenseRouter=require('./routes/expense_route')
 const monthSummaryRouter=require('./routes/monthsummary_route')
+const budgetRouter=require('./routes/budget_route')
 require('dotenv').config()
 const port = process.env.PORT
 
@@ -23,6 +24,9 @@ app.use('/expense',expenseRouter)
 
 //monthSummary routes
 app.use('/',monthSummaryRouter)
+
+//budget routes
+app.use('/budget',budgetRouter)
   
   app.listen(port, () => {
     console.log(` app listening on port ${port}`)
