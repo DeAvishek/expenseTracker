@@ -16,6 +16,11 @@ const signupUser=async(req,res)=>{
         if (!emailRegex.test(email)) {
             return res.status(400).json({error: "Please enter a valid email address"})
         }
+        const user= await User.findOne({email})
+        if(user){
+            return res.status(409).json({error:"user with this email exists"})
+        }
+
         //validate password
         if(password.length < 6){
             return res.status(400).json({error: "Password must be at least 6 characters long"})
@@ -54,7 +59,7 @@ const loginUser=async(req,res)=>{
             return res.status(400).json({error:"wrong credentials ! login with valid one"})
         }
         const token= jwt.sign({id:owner._id},jwt_secret)
-        return res.status(200).json({bearer:token})
+        return res.status(200).json({succes:true,bearer:token})
     } catch (error) {
         return res.status(500).json({error:"internal server error"})
     }

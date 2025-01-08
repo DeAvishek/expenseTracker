@@ -2,25 +2,32 @@ import Input from './Input'
 import React from 'react'
 import axios from 'axios'
 import { useForm } from 'react-hook-form'
+import { useState } from 'react'
 
  
-
+const url=process.env.REACT_APP_URL_LINK;
 const Signup = () => {
-    const {register,handleSubmit}=useForm()
+    const {register,handleSubmit,reset}=useForm()
+    const [loading, setloading] = useState(false)
     const signup=async(data)=>{
+        setloading(true)
         const headers = {
           'Content-Type': 'application/json' // Replace with your token
         };
       try {
-        const response= await axios.post('http://localhost:6000/signup',data,{headers})
-        if(response.status===200){
+        const response= await axios.post(`${url}/signup`,data,{headers})
+        if(response.status===201){
           console.log(response)
+          reset()
+        }else if(response.status===409){
+          console.log("User with this email exits")
         }else{
           console.log("bad request")
         }  
     } catch (error) {
       console.log(error) 
-        
+    }finally{
+      setloading(false)
     }
     }
     
@@ -67,7 +74,7 @@ const Signup = () => {
         </div>
 
         <div className="text-center">
-          <button type="submit" className="btn btn-primary btn-sm my-3" onClick={()=>("hii")}>Sign Up</button>
+          <button type="submit" className="btn btn-success btn-sm my-3">Sign Up</button>
         </div>
       </form>
     </div>

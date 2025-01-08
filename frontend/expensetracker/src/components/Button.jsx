@@ -7,7 +7,7 @@ const Button = ({
 }) => {
   return (
     <div>
-       <button className={`btn btn-primary ${className}`}{...props}></button>
+       <button className={`btn  btn-outline-warning ${className}`}{...props}></button>
     </div>
   )
 }

@@ -11,3 +11,6 @@
   border-color: #0056b3; /* Darker blue on hover */
   cursor: pointer; /* Change cursor to pointer */
 }
+body{
+  background-color: black;
+}
