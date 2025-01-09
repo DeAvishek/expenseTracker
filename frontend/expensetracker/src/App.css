@@ -14,3 +14,19 @@
 body{
   background-color: black;
 }
+#trash:hover, #wrench:hover {
+  cursor: pointer; /* Pointer cursor on hover */
+  border-color:rgb(255, 193, 7); /* Gold-like hover border */
+  background-color:rgb(237, 235, 228); /* Optional: Adds background hover */
+}
+
+#trash, #wrench {
+  border: 2px solid white; /* Fixed typo from 'sold' to 'solid' */
+  padding: 5px; /* Optional for spacing */
+  border-radius: 3px; /* Optional for aesthetics */
+  display: inline-block; /* Align as inline elements */
+}
+#row{
+  background-color: rgb(255, 193, 7);
+  font-family: 'Times New Roman', Times, serif;
+}

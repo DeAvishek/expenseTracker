@@ -4,6 +4,7 @@ import Signup from './components/Signup'
 import Login from './components/Login'
 import PostExpense from './components/Expenseform'
 import Expense from './components/Expenses';
+import Expenses from './components/Expenses';
 function App() {
   return (
     <div className="App ">
@@ -11,7 +12,8 @@ function App() {
         <Login/>
        {/* <Logout/> */}
        <PostExpense/>
-       <Expense/>
+       {/* <Expense/> */}
+       <Expenses/>
     </div>
   );
 }

@@ -5,7 +5,8 @@ import Button from './Button'
 const Logout = () => {
     const dispatch=useDispatch()
     const logout=()=>{
-        dispatch(authLogout());
+      localStorage.removeItem('bearerToken')
+      dispatch(authLogout());
     }
   return (
     <div>
