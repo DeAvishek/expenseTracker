@@ -19,9 +19,15 @@ const Expenseform = () => {
                     'bearer': `${token}`
                 }
                 const response = await axios.post(`${url}/expense/addexpense`, data, { headers })
-                if (response.status === 200) {
+                if (response.status === 201) {
                     console.log(response.data)
                     reset()
+                }else if(response.status===401){
+                    console.log("User Not found")
+                }else if(response.status===400){
+                    console.log("Invalid data")
+                }else{
+                    console.log("internal server error")
                 }
             } catch (error) {
                 console.log(error.response.data)
@@ -31,30 +37,79 @@ const Expenseform = () => {
     }
 
     return (
-        <div>
-            <form onSubmit={handleSubmit(createExpense)}>
-                <b>Amount:</b>
-                <Input
-                    placeholder="amount"
-                    name="amount"
-                    {...register("amount")}
-                />
-
-                <b>Category:</b>
-                <Input
-                    placeholder="category"
-                    name="category"
-                    {...register("category")}
-                />
-
-                <b>Description:</b>
-                <Input
-                    placeholder="description"
-                    name="description"
-                    {...register("description")}
-                />
-            </form>
+        <div className="container my-4 d-flex justify-content-center">
+    <form
+        onSubmit={handleSubmit(createExpense)}
+        className="d-flex flex-column align-items-center p-4 rounded"
+        style={{
+            backgroundColor: "#FFC107", // Dark yellow
+            width: "400px", // Specific width
+            minHeight: "400px", // Specific height
+        }}
+    >
+        <div className="mb-3 w-100">
+            <label htmlFor="amount" className="form-label text-dark fw-bold">
+                Amount:
+            </label>
+            <Input
+                type="text"
+                className="form-control"
+                placeholder="Enter amount"
+                id="amount"
+                name="amount"
+                {...register("amount")}
+                style={{ height: "50px" }} // Adjust height
+            />
         </div>
+
+        <div className="mb-3 w-100">
+            <label
+                htmlFor="category"
+                className="form-label text-dark fw-bold"
+            >
+                Category:
+            </label>
+            <Input
+                type="text"
+                className="form-control"
+                placeholder="Enter category"
+                id="category"
+                name="category"
+                {...register("category")}
+                style={{ height: "50px" }} // Adjust height
+            />
+        </div>
+
+        <div className="mb-3 w-100">
+            <label
+                htmlFor="description"
+                className="form-label text-dark fw-bold"
+            >
+                Description:
+            </label>
+            <Input
+                type="text"
+                className="form-control"
+                placeholder="Enter description"
+                id="description"
+                name="description"
+                {...register("description")}
+                style={{ height: "80px" }} // Adjust height
+            />
+        </div>
+
+        <div className="mt-3">
+            <Button
+                type="submit"
+                className="btn btn-dark btn-lg px-4"
+                style={{ width: "200px" }} // Button width
+            >
+                Create Expense
+            </Button>
+        </div>
+    </form>
+</div>
+
     )
 }
 

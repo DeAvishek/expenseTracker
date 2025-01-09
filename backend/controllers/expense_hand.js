@@ -6,7 +6,6 @@ const createExpense = async (req, res) => {
     try {
         const { amount, category, description } = req.body
         const userId = req.user._id;
-        
         // Add data validation
         if (!amount || amount <= 0) {
             return res.status(400).json({ error: "Amount must be greater than 0" })
@@ -65,7 +64,7 @@ const allExpenses = async (req, res) => {
         const expenses = await Expense.find({ userId: userId });
         
         if (!expenses || expenses.length <= 0) {
-            return res.status(200).json({ success: true, message: "no expenses" });
+            return res.status(204).json({ success: true, message: "no expenses" });
         }
         return res.status(200).json(expenses);
     } catch (error) {

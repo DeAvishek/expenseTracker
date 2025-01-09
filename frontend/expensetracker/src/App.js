@@ -3,13 +3,15 @@ import './App.css';
 import Signup from './components/Signup'
 import Login from './components/Login'
 import PostExpense from './components/Expenseform'
+import Expense from './components/Expenses';
 function App() {
   return (
     <div className="App ">
        {/* <Signup/> */}
-       <Login/>
-       <Logout/>
+        <Login/>
+       {/* <Logout/> */}
        <PostExpense/>
+       <Expense/>
     </div>
   );
 }
