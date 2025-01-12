@@ -1,6 +1,6 @@
 const Expense = require('../models/expensemodel');
-const User=require('../models/usermodel')
-const MonthSummary=require('../models/monSummarymodel')
+const User = require('../models/usermodel')
+const MonthSummary = require('../models/monSummarymodel')
 //@Log in required
 const createExpense = async (req, res) => {
     try {
@@ -21,28 +21,25 @@ const createExpense = async (req, res) => {
             description,
             userId: userId
         })
-       
-        const expenseDate=newExpense.date
-        const month=expenseDate.getMonth()+1//js month are 0-based
-        const year=expenseDate.getFullYear()
 
-       await MonthSummary.findOneAndUpdate({
+        const expenseDate = newExpense.date
+        const month = expenseDate.getMonth() + 1//js month are 0-based
+        const year = expenseDate.getFullYear()
+
+        await MonthSummary.findOneAndUpdate({
             userId: userId,
             month: month,
             year: year
         },
-        {
-            $inc:{totalExpense:amount} //increment the total expense by amount
-        },
-        {
-            upsert:true,
-            new:true
-        }
-    )
-         
-
-
-        return res.status(201).json({success:true,newExpense}) 
+            {
+                $inc: { totalExpense: amount } //increment the total expense by amount
+            },
+            {
+                upsert: true,
+                new: true
+            }
+        )
+        return res.status(201).json({ success: true, newExpense })
     } catch (error) {
         // Add more specific error handling
         if (error.name === 'ValidationError') {
@@ -50,7 +47,7 @@ const createExpense = async (req, res) => {
         }
         // console.log(error)
         res.status(500).json({ error: "Server error while creating expense" })
-    }   
+    }
 }
 //@Log in required
 const allExpenses = async (req, res) => {
@@ -62,7 +59,7 @@ const allExpenses = async (req, res) => {
         }
         // Fix: Query expenses with the correct userId filter
         const expenses = await Expense.find({ userId: userId });
-        
+
         if (!expenses || expenses.length <= 0) {
             return res.status(204).json({ success: true, message: "no expenses" });
         }
@@ -92,15 +89,32 @@ const updateExpense = async (req, res) => {
         // Update the expense
         const updatedExpense = await Expense.findByIdAndUpdate(
             expenseId,
-            { 
+            {
                 ...(amount && { amount }),
                 ...(category && { category }),
                 ...(description && { description })
             },
             { new: true, runValidators: true }
         );
+        const updatedExpenseDate = updatedExpense.date
+        const month = updatedExpenseDate.getMonth() + 1;
+        const year = updatedExpenseDate.getFullYear();
 
+        await MonthSummary.findOneAndUpdate({
+            userId: userId,
+            month: month,
+            year: year
+        },
+            {
+                $inc: { totalExpense: amount }
+            },
+            {
+                upsert: true,
+                new: true
+            }
+        )
         return res.status(200).json(updatedExpense);
+
     } catch (error) {
         if (error.name === 'ValidationError') {
             return res.status(400).json({ error: error.message });
@@ -109,59 +123,59 @@ const updateExpense = async (req, res) => {
     }
 }
 //@Log in required
-const delExpense=async(req,res)=>{
+const delExpense = async (req, res) => {
     try {
         const expenseId = req.params.id;
         const userId = req.user._id;
-    
+
         // Validate expense exists and belongs to user
         const expense = await Expense.findOne({ _id: expenseId, userId: userId });
         if (!expense) {
             return res.status(404).json({ error: "Expense not found or unauthorized" });
         }
-        const amount=expense.amount;
-        const expenseDate=expense.date;
-        const month=expenseDate.getMonth()+1;
-        const year=expenseDate.getFullYear();
+        const amount = expense.amount;
+        const expenseDate = expense.date;
+        const month = expenseDate.getMonth() + 1;
+        const year = expenseDate.getFullYear();
         await Expense.findByIdAndDelete(expenseId)
-        
-        await MonthSummary.findOneAndUpdate({
-            userId:userId,
-            month:month,
-            year:year
-        },
-        {
-            $inc:{totalExpense:-amount}
-        }
-    )
 
-        return res.status(200).json({success:true,message:"deleted successfully"})
+        await MonthSummary.findOneAndUpdate({
+            userId: userId,
+            month: month,
+            year: year
+        },
+            {
+                $inc: { totalExpense: -amount }
+            }
+        )
+
+        return res.status(200).json({ success: true, message: "deleted successfully" })
     } catch (error) {
-        return res.status(500).json({ error: "Server error while deleting expense" });
+        return res.status(500).json({ error });
     }
 }
 // @login required
-const getCategoryWithAmount=async(req,res)=>{
-    try{
-        const userId=req.user._id
-        const user=User.findById(userId)
+const getCategoryWithAmount = async (req, res) => {
+    try {
+        const userId = req.user._id
+        const user = User.findById(userId)
         if (!user) {
             return res.status(400).json({ error: "no user found" });
         }
-        const result= await Expense.aggregate([
+        const result = await Expense.aggregate([
             {
-                $group:{
-                    _id:"$category",
+                $group: {
+                    _id: "$category",
                     totalExpense: { $sum: "$amount" }
                 }
             }
         ])
-        return res.status(200).json({success:true,result})
-    }catch(err){
+        return res.status(200).json({ success: true, result })
+    } catch (err) {
         return res.status(500).json({ error: "Server error while deleting expense" });
 
     }
-    
+
 }
 
-module.exports = { createExpense, allExpenses, updateExpense,delExpense,getCategoryWithAmount }
+module.exports = { createExpense, allExpenses, updateExpense, delExpense, getCategoryWithAmount }

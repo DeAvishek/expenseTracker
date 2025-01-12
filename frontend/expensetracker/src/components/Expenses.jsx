@@ -38,35 +38,37 @@ const Expenses = () => {
     }, [])
     return (
         <div className="container my-4">
-            <h1 className='text-center mb-4 text-white'>Expense List</h1>
+            <h1 className='text-center mb-4 text-black'>Expense List</h1>
             {Loading ? (<div className="spinner-border text-danger" role="status">
                 <span className="visually-hidden">Loading...</span>
-            </div>):(
+            </div>) : (
                 <div className="table-responsive">
-                <table className='table table-bordered table-hover'>
-                    <thead className='table-dark'>
-                        <tr>
-                            <th className="text-center">#</th>
-                            <th>Amount</th>
-                            <th>Category</th>
-                            <th>Description</th>
-                            <th className="text-center">Date</th>
-                            <th className="text-center">Manupulate</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {expenseData.length>0?(
-                            expenseData.map((expense,index)=>(
-                                <Expense key={expense.id} expenseData={expense} index={index}/>
-                            ))
-                        ):( <tr>
-                            <td colSpan="5" className="text-center">
-                                No expenses found.
-                            </td>
-                        </tr>)}
-                    </tbody>
-                </table>
-            </div>
+                    <table className='table table-bordered table-hover'>
+                        <thead className='table-dark'>
+                            <tr>
+                                <th className="text-center">#</th>
+                                <th>Amount</th>
+                                <th>Category</th>
+                                <th>Description</th>
+                                <th className="text-center">Date</th>
+                                <th className="text-center">Manupulate</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {expenseData.length > 0 ? (
+                                expenseData.map((expense, index) => (
+                                    <Expense key={expense._id} expenseData={expense} index={index} />
+                                ))
+                            ) : (
+                                <tr>
+                                    <td colSpan="6" className="text-center">
+                                        No expenses found.
+                                    </td>
+                                </tr>
+                            )}
+                        </tbody>
+                    </table>
+                </div>
             )}
         </div>
     )

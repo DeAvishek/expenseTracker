@@ -8,7 +8,7 @@ const {fetchUser}=require('../middleware/fetchuser') //middleware
 //Routes
 router.post('/addexpense',fetchUser,createExpense)
 router.get('/allexpenses',fetchUser,allExpenses)
-router.patch('/updateexpense/:id',fetchUser,updateExpense)
+router.put('/updateexpense/:id',fetchUser,updateExpense)
 router.delete('/deleteexpense/:id',fetchUser,delExpense)
 router.get('/category-totalamount',fetchUser,getCategoryWithAmount)
 

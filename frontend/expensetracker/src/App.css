@@ -12,7 +12,7 @@
   cursor: pointer; /* Change cursor to pointer */
 }
 body{
-  background-color: black;
+  background-color: rgb(238, 226, 226);
 }
 #trash:hover, #wrench:hover {
   cursor: pointer; /* Pointer cursor on hover */
@@ -29,4 +29,12 @@ body{
 #row{
   background-color: rgb(255, 193, 7);
   font-family: 'Times New Roman', Times, serif;
+}
+#signincard,#signupcard{
+  background-color: #FFC107;
+  color:black
+}
+#chartdiv{
+  height:500px;
+  width: 500px;
 }

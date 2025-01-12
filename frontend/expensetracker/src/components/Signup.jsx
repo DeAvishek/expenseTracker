@@ -3,8 +3,8 @@ import React from 'react'
 import axios from 'axios'
 import { useForm } from 'react-hook-form'
 import { useState } from 'react'
+import Button from './Button'
 
- 
 const url=process.env.REACT_APP_URL_LINK;
 const Signup = () => {
     const {register,handleSubmit,reset}=useForm()
@@ -33,7 +33,7 @@ const Signup = () => {
     
   return (
     <div className="container d-flex justify-content-center align-items-center min-vh-100">
-    <div className="  card shadow-lg p-4 rounded w-100" style={{ maxWidth: '500px' }}>
+    <div className="  card shadow-lg p-4 rounded w-100" id="signupcard" style={{ maxWidth: '500px' }}>
       <h1 className="text-center mb-4">Sign up</h1>
       <form onSubmit={handleSubmit(signup)}>
         {/* for username */}
@@ -74,7 +74,13 @@ const Signup = () => {
         </div>
 
         <div className="text-center">
-          <button type="submit" className="btn btn-success btn-sm my-3">Sign Up</button>
+                        <Button
+                            type="submit"
+                            className="btn btn-dark btn-lg px-4"
+                            style={{ width: "200px" }} // Button width
+                        >
+                            Sign Up
+                        </Button>
         </div>
       </form>
     </div>

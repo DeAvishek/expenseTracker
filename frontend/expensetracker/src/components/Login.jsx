@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux'
 // import { useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import axios from 'axios'
+import Button from './Button'
 const url=process.env.REACT_APP_URL_LINK;
 const Login = () => {
     const { register,handleSubmit,reset } = useForm()
@@ -45,7 +46,7 @@ const Login = () => {
     };
     return (
         <div className="container d-flex justify-content-center align-items-center min-vh-100">
-            <div className="  card shadow-lg p-4 rounded w-100" style={{ maxWidth: '500px' }}>
+            <div className="card shadow-lg p-4 rounded w-100" id="signincard"style={{ maxWidth: '500px' }}>
                 <h1 className="text-center mb-4">Sign in</h1>
                 <form onSubmit={handleSubmit(login)}>
                     <div className="form-group mb-3">
@@ -72,7 +73,13 @@ const Login = () => {
                         {/* {errors.password && <p role="alert" className=" mx-4 text-danger">Password is required</p>} */}
                     </div>
                     <div className="text-center">
-                        <button type="submit" className="btn btn-success btn-sm my-3">Sign in</button>
+                        <Button
+                            type="submit"
+                            className="btn btn-dark btn-lg px-4"
+                            style={{ width: "200px" }} // Button width
+                        >
+                            Sign in
+                        </Button>
                     </div>
                 </form>
             </div>
