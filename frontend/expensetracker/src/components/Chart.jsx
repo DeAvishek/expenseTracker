@@ -16,10 +16,11 @@ const Chart = () => {
             const response = await axios.get(`${url}/expense/category-totalamount`, { headers })
             if (response.status === 200) {
                 console.log(response.data.result)
-                const formattedData = response.data.result.map((item) => ({
+                const formattedData = response.data.result.map((item,index) => ({
                     title: item._id, // Assuming _id is the category name
                     value: item.totalExpense, // Assuming totalExpense is the value
                     color: `#${Math.floor(Math.random() * 16777215).toString(16)}`, // Random color for each slice
+                    key:index+1
                 }));
                 setchartdata(formattedData)
                 setloading(false)
@@ -36,8 +37,7 @@ const Chart = () => {
         getChart()
     }, [])
     return (
-        <div className="container my-4">
-            <h2 className="text-center  mb-4">Expense Distribution by Category</h2>
+        <div className="bg-white" id='piechart'>
             {loading ? (
                 <div className="spinner-border text-primary" role="status">
                     <span className="visually-hidden">Loading...</span>
@@ -48,7 +48,11 @@ const Chart = () => {
                     animationDuration={500}
                     animationEasing="ease-out"
                     data={chartdata}
-                    lengthAngle={360}
+                    // lengthAngle={360}
+                    lineWidth={15}
+                    paddingAngle={0}
+                    radius={50}
+                    rounded
                     startAngle={0}
                     style={{ height: '300px' }}
                     label={({ dataEntry }) => `${dataEntry.title}`}
@@ -63,9 +67,11 @@ const Chart = () => {
                 //     filter: 'drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.4))', // Adds depth via shadow
                 // })}
                 />
+                
             ) : (
                 <p className="text-center">No expense data found.</p>
             )}
+            <h4 className='text-center'>Category-expense</h4>
         </div>
     )
 }

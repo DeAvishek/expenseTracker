@@ -35,6 +35,7 @@ const createExpense = async (req, res) => {
                 $inc: { totalExpense: amount } //increment the total expense by amount
             },
             {
+                //if exist than update otherwise create a new
                 upsert: true,
                 new: true
             }
@@ -158,11 +159,16 @@ const delExpense = async (req, res) => {
 const getCategoryWithAmount = async (req, res) => {
     try {
         const userId = req.user._id
-        const user = User.findById(userId)
+        const user = await User.findById(userId)
         if (!user) {
             return res.status(400).json({ error: "no user found" });
         }
         const result = await Expense.aggregate([
+            {
+                $match: {
+                    userId: userId, // Filter expenses by user ID
+                },
+            },
             {
                 $group: {
                     _id: "$category",
@@ -172,7 +178,7 @@ const getCategoryWithAmount = async (req, res) => {
         ])
         return res.status(200).json({ success: true, result })
     } catch (err) {
-        return res.status(500).json({ error: "Server error while deleting expense" });
+        return res.status(500).json({ error: err });
 
     }
 

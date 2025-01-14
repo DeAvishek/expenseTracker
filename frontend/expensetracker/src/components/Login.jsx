@@ -3,7 +3,7 @@ import Input from './Input'
 import { login as authLogin } from '../store/authSlice'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
-// import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import axios from 'axios'
 import Button from './Button'
@@ -12,7 +12,7 @@ const Login = () => {
     const { register,handleSubmit,reset } = useForm()
     const [loading, setloading] = useState(false)
     const dispatch=useDispatch();
-    // const navigate=useNavigate()
+    const navigate=useNavigate()
     const login=async(data)=>{
         try {
             setloading(true)
@@ -33,6 +33,7 @@ const Login = () => {
                     console.log(user)
                    dispatch(authLogin(user.data)) 
                 }
+                navigate('/home')
             }else if(response.status===400){
                 alert('Wrong credentials')
             }else{
@@ -47,7 +48,7 @@ const Login = () => {
     return (
         <div className="container d-flex justify-content-center align-items-center min-vh-100">
             <div className="card shadow-lg p-4 rounded w-100" id="signincard"style={{ maxWidth: '500px' }}>
-                <h1 className="text-center mb-4">Sign in</h1>
+                <h1 className="text-center mb-4 text-white">Sign in</h1>
                 <form onSubmit={handleSubmit(login)}>
                     <div className="form-group mb-3">
                         <Input

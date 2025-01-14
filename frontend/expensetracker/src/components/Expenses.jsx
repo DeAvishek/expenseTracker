@@ -37,8 +37,7 @@ const Expenses = () => {
         getData()
     }, [])
     return (
-        <div className="container my-4">
-            <h1 className='text-center mb-4 text-black'>Expense List</h1>
+        <div className="container my-4" id='expenses'>
             {Loading ? (<div className="spinner-border text-danger" role="status">
                 <span className="visually-hidden">Loading...</span>
             </div>) : (

@@ -17,7 +17,7 @@ body{
 #trash:hover, #wrench:hover {
   cursor: pointer; /* Pointer cursor on hover */
   border-color:rgb(255, 193, 7); /* Gold-like hover border */
-  background-color:rgb(237, 235, 228); /* Optional: Adds background hover */
+  background-color:rgb(19, 15, 1); /* Optional: Adds background hover */
 }
 
 #trash, #wrench {
@@ -27,14 +27,62 @@ body{
   display: inline-block; /* Align as inline elements */
 }
 #row{
-  background-color: rgb(255, 193, 7);
+  background-color: #5b4b1c;
   font-family: 'Times New Roman', Times, serif;
+  color:white
 }
 #signincard,#signupcard{
-  background-color: #FFC107;
+  background-color: #5b4b1c;
   color:black
 }
-#chartdiv{
-  height:500px;
-  width: 500px;
+#moon{
+  margin-right: 50px;
 }
+#moonicon,#sunicon{
+  height:40px;
+}
+#navbar{
+  height:80px
+}
+ #logo{
+  border-radius: 10px;
+ }
+ #moon:hover{
+  background-color: #FFC107;
+  cursor: pointer;
+ }
+ #sunicon:hover{
+  cursor:pointer
+ }
+ #sidebar{
+  background-color: #666010;
+  width:50
+ }
+ #chart{
+  width: 600px;
+    height: 340px;
+ }
+ #piechart{
+  width: 500px;
+    height: 340px;
+ }
+ #homepage{
+  margin-left: 105px;
+ }
+ #expenses{
+  padding-right: 100px;
+  padding-left: 25px;
+
+ }
+ 
+ .sidebar{
+  width:270px;
+  position: fixed;
+  transition: transform 0.3s ease;
+
+  left: 0;
+ }
+ #addexpense{
+  margin-bottom: 50px;
+  margin-left: 20px;
+ }

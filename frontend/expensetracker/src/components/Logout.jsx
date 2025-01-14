@@ -1,17 +1,22 @@
 import React from 'react'
-import { logout as authLogout} from '../store/authSlice'
+import { logout as authLogout } from '../store/authSlice'
 import { useDispatch } from 'react-redux'
 import Button from './Button'
+import { useNavigate } from 'react-router-dom'
+
 const Logout = () => {
-    const dispatch=useDispatch()
-    const logout=()=>{
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const logout =  () => {
       localStorage.removeItem('bearerToken')
       dispatch(authLogout());
-    }
+
+      navigate('/login')
+    }  
   return (
-    <div>
-        <Button onClick={logout}>Log out</Button>
-    </div>
+    <>
+      <Button className='btn btn-sm btn-warning' onClick={logout}>Log out</Button>
+    </>
   )
 }
 

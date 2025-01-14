@@ -6,12 +6,14 @@ import { useForm } from 'react-hook-form'
 import axios from 'axios'
 import Button from './Button'
 import Alertbox from './Alertbox'
+import { useNavigate } from 'react-router-dom'
 const url = process.env.REACT_APP_URL_LINK;
 const Expenseform = () => {
     const { register, handleSubmit, reset } = useForm()
     const [loading, setloading] = useState(true)
     const [message, setmessage] = useState(null)
     const [alertstaus, setalertstaus] = useState(null)
+    const navigate=useNavigate()
     const user = useSelector((state) => state.userData)
     const createExpense = async (data) => {
         try {
@@ -28,6 +30,8 @@ const Expenseform = () => {
                 setloading(false)
                 setmessage("Expense created SuccessFully")
                 setalertstaus("success")
+                navigate('/home')
+
             } else if (response.status === 401) {
                 console.log("User Not found")
                 setmessage("User Not found")
@@ -55,7 +59,7 @@ const Expenseform = () => {
                     onSubmit={handleSubmit(createExpense)}
                     className="d-flex flex-column align-items-center p-4 rounded"
                     style={{
-                        backgroundColor: "#FFC107", // Dark yellow
+                        backgroundColor: "#5b4b1c", // Dark yellow
                         width: "400px", // Specific width
                         minHeight: "400px", // Specific height
                     }}
