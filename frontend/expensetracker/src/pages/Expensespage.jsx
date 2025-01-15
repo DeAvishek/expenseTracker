@@ -2,7 +2,7 @@ import React from 'react'
 import Expenses from '../components/Expenses'
 const Expensespage = () => {
   return (
-    <div className='mx-4'>
+    <div className='expensespage'>
       <Expenses/>
     </div>
   )

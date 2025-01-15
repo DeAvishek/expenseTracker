@@ -3,17 +3,17 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import store from './store/store'
+import { store, persistor } from './store/store';
 import { Provider } from 'react-redux'
+import { PersistGate } from 'redux-persist/integration/react'
 import { RouterProvider } from 'react-router-dom'
 import { createBrowserRouter } from 'react-router-dom';
 import Signuppage from './pages/Signuppage';
 import Loginpage from './pages/Loginpage';
-// import Expenses from './components/Expenses';
 import Homepage from './pages/Homepage';
 import Expensespage from './pages/Expensespage';
-import Expenseform from './components/Expenseform';
 import Expenseformpage from './pages/Expenseformpage';
+import Userpage from './pages/Userpage';
 
 const router = createBrowserRouter([
     {
@@ -33,12 +33,15 @@ const router = createBrowserRouter([
                 element: <Homepage />
             },
             {
-                path:'/all-expenses',
-                element:<Expensespage/>
-            },{
-                path:'/expense-form',
-                element:<Expenseformpage/>
+                path: '/all-expenses',
+                element: <Expensespage />
+            }, {
+                path: '/expense-form',
+                element: <Expenseformpage />
 
+            },{
+                path:'/user',
+                element:<Userpage/>
             }
         ]
     }
@@ -47,7 +50,9 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <React.StrictMode>
         <Provider store={store}>
-            <RouterProvider router={router} />
+            <PersistGate loading={<div>loading..</div>}persistor={persistor}>
+                <RouterProvider router={router} />
+            </PersistGate >
         </Provider>
     </React.StrictMode>
 );

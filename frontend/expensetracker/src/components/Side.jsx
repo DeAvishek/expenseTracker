@@ -3,13 +3,16 @@ import { Sidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHouse, faUserTie, faFileInvoice,faChartSimple } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
-const Side = ({logout}) => {
+import { useSelector } from 'react-redux';
+const Side = () => {
+    const userdata = useSelector((state) => state.auth.userData)
     return (
-        <div className='sidebar'>
+        <>
+        {userdata !==null && <div className='sidebar'>
             <Sidebar id='sidebar'>
                 <Menu>
                     <SubMenu label="Account">
-                        <MenuItem>
+                        <MenuItem component={<Link to="/user" />}>
                             <FontAwesomeIcon icon={faUserTie} />
                             User
                         </MenuItem>
@@ -31,7 +34,8 @@ const Side = ({logout}) => {
                     <MenuItem onClick={console.log("hii")}> Log Out </MenuItem>
                 </Menu>
             </Sidebar>
-        </div>
+        </div>}
+        </>
     )
 }
 

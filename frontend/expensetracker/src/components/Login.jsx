@@ -22,7 +22,7 @@ const Login = () => {
             const response= await axios.post(`${url}/login`,data,{headers})
             if(response.status===200){
                 const token=response.data.bearer
-                console.log(token)
+                // console.log(token)
                 localStorage.setItem('bearerToken',token)
                 reset()
                 const userHeaders={
@@ -30,10 +30,12 @@ const Login = () => {
                 }
                 const user=await axios.get(`${url}/user`,{headers:userHeaders})
                 if(user){
-                    console.log(user)
-                   dispatch(authLogin(user.data)) 
+                   console.log(user.data)
+                   dispatch(authLogin(user.data))
+                  
                 }
-                navigate('/home')
+                navigate('/home') 
+                
             }else if(response.status===400){
                 alert('Wrong credentials')
             }else{

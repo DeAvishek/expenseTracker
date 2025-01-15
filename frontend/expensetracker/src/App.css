@@ -42,7 +42,8 @@ body{
   height:40px;
 }
 #navbar{
-  height:80px
+  height:80px;
+  background-color: #282c34;
 }
  #logo{
   border-radius: 10px;
@@ -51,8 +52,18 @@ body{
   background-color: #FFC107;
   cursor: pointer;
  }
+ #moon{
+  color:white
+ }
  #sunicon:hover{
+  background-color: #FFC107;
   cursor:pointer
+ }
+ #sunicon{
+  color:white
+ }
+ #dropdown:hover{
+  cursor: pointer;
  }
  #sidebar{
   background-color: #666010;
@@ -86,3 +97,63 @@ body{
   margin-bottom: 50px;
   margin-left: 20px;
  }
+#getuser{
+  width:20%;
+  margin-left: 500px;
+  background-color: white;
+  height:200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  border: 3px solid  black;
+
+}
+#logoutbtn{
+  margin-right:20px;
+}
+.expensespage{
+  margin-left: 200px;
+}
+/* Footer Styling */
+.footer{
+  background-color: #282c34;  /* Dark background */
+  color: white;
+  padding: 20px;
+  text-align: center;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/* .header{
+  background-color: #282c34;
+  color: white;
+} */
+
+.footer p {
+  margin-top: 10px;
+  font-size: 0.9rem;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 20px; /* Space between icons */
+  margin-bottom: 10px;
+}
+
+.social-icons a {
+  color: white;
+  text-decoration: none;
+}
+
+.social-icons a:hover {
+  color: #1DA1F2; /* Twitter blue on hover */
+}
+
+.social-icons a:nth-child(2):hover {
+  color: #0e76a8; /* LinkedIn blue on hover */
+}
