@@ -2,7 +2,7 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import Input from './Input'
 import { useState } from 'react'
-import { useForm } from 'react-hook-form'
+import { set, useForm } from 'react-hook-form'
 import axios from 'axios'
 import Button from './Button'
 import Alertbox from './Alertbox'
@@ -30,31 +30,20 @@ const Expenseform = () => {
                 setloading(false)
                 setmessage("Expense created SuccessFully")
                 setalertstaus("success")
-                navigate('/expense_tracker/home')
-
-            } else if (response.status === 401) {
-                console.log("User Not found")
-                setmessage("User Not found")
-                setalertstaus("danger")
-            } else if (response.status === 400) {
-                console.log("Invalid data")
-                setmessage("invalid data")
-                setalertstaus("danger")
-            } else {
-                setmessage("Internal server Error")
-                setalertstaus("danger")
-            }
+                setTimeout(() => {
+                    navigate('/expense_tracker/home')
+                }, 2000);
+            } 
         } catch (error) {
-            console.log(error.response.data)
+            setmessage(error.response.data)
+            setalertstaus("danger")
         } 
     }
 
     return (
         <>
-        <div>
-            <Alertbox setmessage={message} loading={loading} setalertstaus={alertstaus}/>
-        </div>
             <div className="container my-4 d-flex justify-content-center">
+                
                 <form
                     onSubmit={handleSubmit(createExpense)}
                     className="d-flex flex-column align-items-center p-4 rounded"
@@ -64,8 +53,9 @@ const Expenseform = () => {
                         minHeight: "400px", // Specific height
                     }}  
                 >
+                    <Alertbox message={message}  status={alertstaus}/> 
                     <div className="mb-3 w-100">
-
+                    
                         <label htmlFor="amount" className="form-label text-dark fw-bold">
                             Amount:
                         </label>

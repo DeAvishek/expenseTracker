@@ -1,4 +1,8 @@
-
+.wrapper {
+  min-height: 100%;  /* Ensure content stretches to full height */
+  display: flex;
+  flex-direction: column;
+}
 #input:focus{
   border-color: #007bff; /* Blue border on focus */
   box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); /* Blue shadow */
@@ -32,8 +36,9 @@ body{
   color:white;
 }
 #signincard,#signupcard{
-  background-color: #5b4b1c;
-  color:black
+  background-color: #682e2ee2;
+  color:black;
+  box-shadow: 0 8px 16px rgba(116, 4, 145, 0.914);
 }
 #moon{
   margin-right: 50px;
@@ -81,7 +86,7 @@ body{
  #homepage {
   background-color: white; /* Set the background to white */
   width: 80%; /* Retain the width */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
+  box-shadow: 0 4px 8px rgba(33, 6, 184, 0.758); /* Add a subtle shadow */
   border-radius: 10px; /* Optional: Add rounded corners for a softer look */
   /* margin: auto;  */
   padding: 20px; /* Add some inner spacing */
@@ -130,10 +135,12 @@ body{
 }
 
 #footer{
+  margin-top:355px;
   width:100%;
-  margin-top: 4%;
+  /* margin-top: 50%; */
   background-color: #343a40;
   color:white;
+  height:50px
   /* position: relative; */
 }
 
@@ -175,4 +182,9 @@ body{
 #table{
   background-color: #4c7eb0;
   width:90%
+}
+
+#aboutDiv{
+  margin-left: 18%;
+  width:70%
 }

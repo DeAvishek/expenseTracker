@@ -16,6 +16,7 @@ import Expenseformpage from './pages/Expenseformpage';
 import Userpage from './pages/Userpage';
 import Container from './pages/Container';
 import LockPage from './pages/Lockpage';
+import Aboutpage from './pages/Aboutpage';
 const router = createBrowserRouter([
     {
         path: '/',
@@ -48,6 +49,10 @@ const router = createBrowserRouter([
             {
                 path: 'user',
                 element: <Userpage />
+            },
+            {
+                path:'about',
+                element:<Aboutpage/>
             }
         ]
     }

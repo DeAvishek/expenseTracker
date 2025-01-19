@@ -41,7 +41,6 @@ const Signup = () => {
       setloading(true)
     } 
   }
-
   return (<>
     <div className="container d-flex justify-content-center align-items-center min-vh-100">
       {!loading && <Alertbox message={Message} status={Status} />}
@@ -93,7 +92,7 @@ const Signup = () => {
             >
               Sign Up
             </Button>
-            <p style={{ color: 'white' }}>Already hav an account.... <Link to='/expense_tracker/login'>Sign in</Link></p>
+            <p style={{ color: 'white' }}>Already have an account.... <Link style={{ color: 'white' }} to='/expense_tracker/login'>Sign in</Link></p>
           </div>
         </form>
       </div>

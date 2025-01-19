@@ -57,7 +57,7 @@ const Login = () => {
     return (
         <>
         <div className="container d-flex justify-content-center align-items-center min-vh-100">
-            <div className="card shadow-lg p-4 rounded w-100" id="signincard"style={{ maxWidth: '500px' }}>
+            <div className="card shadow-lg p-4 rounded w-100" id="signincard" style={{ maxWidth: '500px' }}>
             <Alertbox  message={Message} status={Status} />
                 <h1 className="text-center mb-4 text-white">Sign in</h1>
                 <form onSubmit={handleSubmit(login)}>
@@ -92,7 +92,7 @@ const Login = () => {
                         >
                             Sign in
                         </Button>
-                        <p style={{color:'white'}}>Dont have an account....<Link to='/expense_tracker/signup'>Sign up</Link></p>
+                        <p style={{color:'white'}}>Dont have an account....<Link style={{color:'white'}} to='/expense_tracker/signup'>Sign up</Link></p>
                     </div>
                 </form>
             </div>
