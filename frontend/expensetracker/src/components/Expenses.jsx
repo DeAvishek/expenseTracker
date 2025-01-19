@@ -41,8 +41,8 @@ const Expenses = () => {
             {Loading ? (<div className="spinner-border text-danger" role="status">
                 <span className="visually-hidden">Loading...</span>
             </div>) : (
-                <div className="table-responsive">
-                    <table className='table table-bordered table-hover'>
+                <div className="table-responsive" >
+                    <table className='table table-bordered table-hover' id="table"> 
                         <thead className='table-dark'>
                             <tr>
                                 <th className="text-center">#</th>
@@ -50,7 +50,7 @@ const Expenses = () => {
                                 <th>Category</th>
                                 <th>Description</th>
                                 <th className="text-center">Date</th>
-                                <th className="text-center">Manupulate</th>
+                                <th className="text-center">Edit/Delete</th>
                             </tr>
                         </thead>
                         <tbody>

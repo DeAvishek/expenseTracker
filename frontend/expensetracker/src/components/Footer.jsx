@@ -1,20 +1,23 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTwitter, faLinkedin } from '@fortawesome/free-brands-svg-icons';  // Import Twitter and LinkedIn icons
+import { faTwitter, faLinkedin, faGithub } from '@fortawesome/free-brands-svg-icons';  // Import Twitter and LinkedIn icons
 
 const Footer = () => {
     return (
-        <footer className="footer d-flex text-center bg-grey">
-            <p>© 2025 Your Company. All rights reserved.</p>
+        <div className="d-flex justify-content-center align-items-center" id="footer">
+            <h6>© 2025 Expense Tracker. All rights reserved.</h6>
             <div className="social-icons mx-5">
                 <a href="https://twitter.com" >
-                    <FontAwesomeIcon className='mx-4'icon={faLinkedin} size="2x" />
+                    <FontAwesomeIcon className='mx-1' icon={faLinkedin} size="2x" />
                 </a>
-                <a href="https://linkedin.com" >
-                <FontAwesomeIcon className='mx-4' icon={faTwitter} size='2x' />
+                <a href="https://linkedin.com/in/avishek-patra-95ba08321" >
+                    <FontAwesomeIcon className='mx-1' icon={faTwitter} size='2x' />
+                </a>
+                <a href='https://github.com/DeAvishek'>
+                    <FontAwesomeIcon icon={faGithub} size='2x' className='mx-1' />
                 </a>
             </div>
-        </footer>
+        </div>
     );
 }
 

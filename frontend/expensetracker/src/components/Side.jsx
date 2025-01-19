@@ -8,22 +8,22 @@ const Side = () => {
     const userdata = useSelector((state) => state.auth.userData)
     return (
         <>
-        {userdata !==null && <div className='sidebar'>
+        {userdata !==null && <div className='sidebar' >
             <Sidebar id='sidebar'>
                 <Menu>
                     <SubMenu label="Account">
-                        <MenuItem component={<Link to="/user" />}>
+                        <MenuItem component={<Link to="/expense_tracker/user" />}>
                             <FontAwesomeIcon icon={faUserTie} />
                             User
                         </MenuItem>
-                        <MenuItem component={<Link to="/signup" />}> Sign Up </MenuItem>
-                        <MenuItem component={<Link to="/login" />}> Log In </MenuItem>
+                        <MenuItem component={<Link to="/expense_tracker/signup" />}> Sign Up </MenuItem>
+                        <MenuItem component={<Link to="/expense_tracker/login" />}> Log In </MenuItem>
                     </SubMenu>
-                    <MenuItem component={<Link to="/home" />}>
+                    <MenuItem component={<Link to="/expense_tracker/home" />}>
                         <FontAwesomeIcon icon={faHouse} />
                         Home
                     </MenuItem>
-                    <MenuItem component={<Link to="/all-expenses" />}>
+                    <MenuItem component={<Link to="/expense_tracker/all-expenses" />}>
                         <FontAwesomeIcon icon={faFileInvoice} />
                         Expenses
                     </MenuItem>
@@ -31,7 +31,7 @@ const Side = () => {
                         <FontAwesomeIcon icon={faChartSimple} />
                         MonthLy Summary
                     </MenuItem>
-                    <MenuItem onClick={console.log("hii")}> Log Out </MenuItem>
+                    {/* <MenuItem > Log Out </MenuItem> */}
                 </Menu>
             </Sidebar>
         </div>}

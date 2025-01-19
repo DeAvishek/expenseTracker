@@ -15,11 +15,11 @@ const Header = () => {
         const isDarkMode = document.body.style.backgroundColor === 'gray';
         if (isDarkMode) {
             document.body.style.backgroundColor = 'white';
-            document.body.style.color = 'black'; // Reset text color
+            document.body.style.color = 'black'; 
             setdarkmode(false)
         } else {
             document.body.style.backgroundColor = 'gray';
-            document.body.style.color = 'black'; // Set text color for dark mode
+            document.body.style.color = 'black';
             setdarkmode(true)
         }
     };
@@ -30,7 +30,6 @@ const Header = () => {
         } else {
             setsidebar(true)
         }
-
     }
     return (
         <>
@@ -47,12 +46,10 @@ const Header = () => {
                         {darkmode === true ? (<FontAwesomeIcon onClick={handleBackground} id="sunicon" icon={faSun} />)
                             : (<FontAwesomeIcon onClick={handleBackground} id="moonicon" icon={faMoon} />)}
                     </div>
-
-
                 </nav>
                 <nav className='navbar mx-4'>
                     <div>
-                        <FontAwesomeIcon style={{color:'blue'}}onClick={handlesideBar} id='dropdown'size='2x' icon={faCircleChevronDown} />
+                        <FontAwesomeIcon style={{ color: 'blue' }} onClick={handlesideBar} id='dropdown' size='2x' icon={faCircleChevronDown} />
                     </div>
                 </nav>
             </div>

@@ -3,40 +3,40 @@ import Monthsummary from '../components/Monthsummary'
 import Chart from '../components/Chart'
 import Expenses from '../components/Expenses'
 import Expenseformpage from './Expenseformpage'
-// import Footer from '../components/Footer'
 import Button from '../components/Button'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-const Homepage = () => {
+import { useSelector } from 'react-redux'
+const Homepage = ({ width = 400, height = 300 }) => {
   const [form, setform] = useState(false)
   const handleForm = () => {
     setform(true);
   }
+  const userdata = useSelector((state) => state.auth.userData)
   return (
     <>
-      <div className='container' id='homepage'>
+      {userdata !== null ? (<div className='container' id='homepage'>
         {/* Summary and Chart Section */}
-        <div className='d-flex'>
-          <div className='mx-4'>
+        <div className='d-flex' id='homeCharts'>
+          <div id='homeline' style={{ width, height }} >
             <Monthsummary />
           </div>
-          <div className='mx-4'>
+          <div id="homepie" style={{ width, height }}>
             <Chart />
           </div>
+          <div id='addexpense'>
+            <Link to='/expense_tracker/expense-form'> <Button onclick={handleForm} className='btn btn-lg btn-primary '>Add expense</Button></Link>
+          </div>
         </div>
-
-
-
-        {/* Expenses List Section */}
-        <div className='my-5' >
+        <div className='my-3' id='homeexpense' >
           <Expenses />
         </div>
-        <div id='addexpense'>
-          <Link to='/expense-form'> <Button onclick={handleForm} className='btn btn-lg btn-primary '>Add expense</Button></Link>
+        {/* <div id='addexpense'>
+          <Link to='expense_tracker/expense-form'> <Button onclick={handleForm} className='btn btn-lg btn-primary '>Add expense</Button></Link>
           {form && <Expenseformpage />}
-        </div>
-      </div>
-    
+        </div> */}
+
+      </div>) : (<h2 className='text-red mx-5'>Unauthorized to access .... <Link to='/expense_tracker/login'>Login</Link></h2>)}
     </>
   );
 }

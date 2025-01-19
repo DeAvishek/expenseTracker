@@ -62,19 +62,7 @@ const Monthsummary = () => {
     useEffect(() => {
       getMonthData()
     }, [])
-    // const options = {
-    //     responsive: true,
-    //     plugins: {
-    //       legend: {
-    //         position: "top",
-    //       },
-    //     },
-    //     scales: {
-    //       y: {
-    //         beginAtZero: true,
-    //       },
-    //     },
-    //   };
+    
     const options = {
         scales: {
           y: {
@@ -85,15 +73,14 @@ const Monthsummary = () => {
 
 
   return (
-    <div className=' bg-white' id='chart'> 
-    
+   
+     <>
           {loading ?(
             <div className="spinner-border text-primary" role="status">
                     <span className="visually-hidden">Loading...</span>
                 </div>
           ):chartData?(<Line data={chartData} options={options}></Line>):<p>loading...</p>}
-          <h4 className='text-center'>Monthly-summary</h4>
-    </div>
+     </>
   )
 }
 

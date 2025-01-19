@@ -30,7 +30,7 @@ const Expenseform = () => {
                 setloading(false)
                 setmessage("Expense created SuccessFully")
                 setalertstaus("success")
-                navigate('/home')
+                navigate('/expense_tracker/home')
 
             } else if (response.status === 401) {
                 console.log("User Not found")
@@ -62,7 +62,7 @@ const Expenseform = () => {
                         backgroundColor: "#5b4b1c", // Dark yellow
                         width: "400px", // Specific width
                         minHeight: "400px", // Specific height
-                    }}
+                    }}  
                 >
                     <div className="mb-3 w-100">
 

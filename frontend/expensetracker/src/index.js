@@ -14,43 +14,50 @@ import Homepage from './pages/Homepage';
 import Expensespage from './pages/Expensespage';
 import Expenseformpage from './pages/Expenseformpage';
 import Userpage from './pages/Userpage';
-
+import Container from './pages/Container';
+import LockPage from './pages/Lockpage';
 const router = createBrowserRouter([
     {
         path: '/',
-        element: <App />,
+        element: < LockPage />,
+    },
+    {
+        path: '/expense_tracker',
+        element: <Container />,
         children: [
             {
-                path: '/login',
+                path: 'login',
                 element: <Loginpage />
             },
             {
-                path: '/signup',
+                path: 'signup',
                 element: <Signuppage />
             },
             {
-                path: '/home',
+                path: 'home',
                 element: <Homepage />
             },
             {
-                path: '/all-expenses',
+                path: 'all-expenses',
                 element: <Expensespage />
             }, {
-                path: '/expense-form',
+                path: 'expense-form',
                 element: <Expenseformpage />
 
-            },{
-                path:'/user',
-                element:<Userpage/>
+            },
+            {
+                path: 'user',
+                element: <Userpage />
             }
         ]
     }
+
 ])
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <React.StrictMode>
         <Provider store={store}>
-            <PersistGate loading={<div>loading..</div>}persistor={persistor}>
+            <PersistGate loading={<div>loading..</div>} persistor={persistor}>
                 <RouterProvider router={router} />
             </PersistGate >
         </Provider>

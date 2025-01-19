@@ -1,10 +1,10 @@
 import React from 'react'
 
-const Alertbox = ({ setmessage,loading,setalertstaus}) => {
+const Alertbox = ({ message,loading,status}) => {
     return (
         <div>
-            {!loading && <div className={`alert alert-${setalertstaus}`} role="alert">
-                {setmessage}
+            {!loading && <div className={`alert alert-${status}`} role="alert">
+                {message}
             </div>}
         </div>
     )

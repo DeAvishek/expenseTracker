@@ -11,7 +11,7 @@ const Logout = () => {
   const logout =  () => {
       localStorage.removeItem('bearerToken')
       dispatch(authLogout());
-      navigate('/login')
+      navigate('/expense_tracker/login')
     }  
   return (
     <>

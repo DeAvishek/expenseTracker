@@ -51,7 +51,7 @@ const loginUser=async(req,res)=>{
 
         let owner= await User.findOne({email})
         if(!owner){
-            return res.status(400).json({error:"wrong credentials ! login with valid one"})
+            return res.status(404).json({error:"wrong credentials ! login with valid one"})
         }
         const comparePassword = await bcrypt.compare(password, owner.password)
 

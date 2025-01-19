@@ -37,7 +37,8 @@ const Chart = () => {
         getChart()
     }, [])
     return (
-        <div className="bg-white" id='piechart'>
+        // <div className="bg-white" id='piechart'>
+        <>
             {loading ? (
                 <div className="spinner-border text-primary" role="status">
                     <span className="visually-hidden">Loading...</span>
@@ -61,6 +62,7 @@ const Chart = () => {
                         fontFamily: 'Arial, sans-serif',
                         fill: '#000',
                         // Adds a shadow effect to the text
+                
                     }}
                 // segmentsStyle={(index) => ({
                 //     transform: 'scale(1.03)', // Slightly enlarges the segment for a 3D effect
@@ -71,8 +73,8 @@ const Chart = () => {
             ) : (
                 <p className="text-center">No expense data found.</p>
             )}
-            <h4 className='text-center'>Category-expense</h4>
-        </div>
+            
+        </>
     )
 }
 
