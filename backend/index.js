@@ -9,11 +9,25 @@ const cors=require('cors')
 require('dotenv').config()
 const port = process.env.PORT
 
-app.use(cors({
-  origin: 'http://localhost:3000', // Allow only your frontend (port 3000) to access the backend
-  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allow specific methods
-  allowedHeaders: ['Content-Type', 'bearer'] // Allow specific headers
-}));
+const allowedorigin=[
+  'http://localhost:3000' , //local frontend
+  'https://stalwart-cupcake-14bc19.netlify.app/'
+]
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      // Allow requests with no origin (like Postman) or from allowed origins
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
+    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allow specific methods
+    credentials: true, // Allow cookies and headers like authorization
+    allowedHeaders: ['Content-Type', 'Authorization'], // Allow specific headers
+  })
+);
 //midddleware for parse the json
 app.use(express.json());
 

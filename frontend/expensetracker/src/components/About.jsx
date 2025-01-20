@@ -3,7 +3,7 @@ import React from 'react'
 const About = () => {
     return (
         <div className='container row' id='aboutDiv'>
-            <div className="card border-primary mb-3 col-4 mx-1 " style={{maxWidth:'18rem'}} >
+            <div className="card border-primary mb-3 col-6 mx-1 " style={{maxWidth:'18rem'}} >
                 <div className="card-header">About Our Expense Tracker</div>
                 <div className="card-body text-primary">
                     <p className="card-text">Managing personal finances can be challenging, but with our Expense Tracker app, it's easier than ever to take control of your money. Our goal is to provide a seamless, intuitive, and powerful platform to help you:

@@ -2,11 +2,12 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import Input from './Input'
 import { useState } from 'react'
-import { set, useForm } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 import axios from 'axios'
 import Button from './Button'
 import Alertbox from './Alertbox'
 import { useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 const url = process.env.REACT_APP_URL_LINK;
 const Expenseform = () => {
     const { register, handleSubmit, reset } = useForm()
@@ -14,7 +15,7 @@ const Expenseform = () => {
     const [message, setmessage] = useState(null)
     const [alertstaus, setalertstaus] = useState(null)
     const navigate=useNavigate()
-    const user = useSelector((state) => state.userData)
+    const userdata=useSelector((state)=>state.auth.userData)
     const createExpense = async (data) => {
         try {
             setloading(true);
@@ -35,22 +36,23 @@ const Expenseform = () => {
                 }, 2000);
             } 
         } catch (error) {
-            setmessage(error.response.data)
+            setmessage(error.response.data.error)
             setalertstaus("danger")
         } 
     }
 
     return (
         <>
-            <div className="container my-4 d-flex justify-content-center">
+            { userdata!==null ?(<div className="container my-4 d-flex justify-content-center">
                 
                 <form
                     onSubmit={handleSubmit(createExpense)}
                     className="d-flex flex-column align-items-center p-4 rounded"
                     style={{
-                        backgroundColor: "#5b4b1c", // Dark yellow
+                        backgroundColor: "#682e2ee2", // Dark yellow
                         width: "400px", // Specific width
                         minHeight: "400px", // Specific height
+                        color:'white'
                     }}  
                 >
                     <Alertbox message={message}  status={alertstaus}/> 
@@ -116,7 +118,7 @@ const Expenseform = () => {
                         </Button>
                     </div>
                 </form>
-            </div>
+            </div>):(<h2 className='text-red mx-5'>Unauthorized to access .... <Link to='/expense_tracker/login'>Login</Link></h2>)}
         </>
 
     )

@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { Button, Container, Row, Col } from 'react-bootstrap'; // Importing Bootstrap components
 import Logo from '../components/Logo';
 import { useNavigate } from 'react-router-dom';
@@ -9,11 +8,11 @@ const LockPage = () => {
     return (
         <div className="lock-page">
             
-            <Container fluid className="vh-100 d-flex flex-column justify-content-center align-items-center text-center" style={{ background: '#f0f0f0' }}>
+            <Container fluid className="vh-100 d-flex flex-column justify-content-center align-items-center text-center" style={{ backgroundColor: '#682e2ee2' ,color:'white' }}>
                 <Row className="mb-4">
                  
                     <Col>
-                        <h1 className="display-4 text-primary">Expense Tracker</h1>
+                        <b><h1 className="display-4 text-white" >Expense Tracker</h1></b>
                     </Col>
                 </Row>
                 <Row className="mb-4">
