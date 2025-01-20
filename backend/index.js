@@ -11,11 +11,19 @@ const port = process.env.PORT
 
 const allowedOrigins = [
   'http://localhost:3000',  // Development URL
+  'https://bespoke-marzipan-096d12.netlify.app'
 ];
 app.use(cors({
-  origin: allowedOrigins, // Use the allowedOrigins array here
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true); // Allow the request
+    } else {
+      callback(new Error('Not allowed by CORS')); // Block the request
+    }
+  },
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  allowedHeaders: ['Content-Type', 'bearer'],
+  allowedHeaders: ['Content-Type', 'bearer'], // Include appropriate headers
+  credentials: true // Allow credentials like cookies if needed
 }));
 //midddleware for parse the json
 app.options('*', cors());
