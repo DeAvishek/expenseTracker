@@ -9,26 +9,16 @@ const cors=require('cors')
 require('dotenv').config()
 const port = process.env.PORT
 
-const allowedorigin=[
-  'http://localhost:3000' , //local frontend
-  'https://stalwart-cupcake-14bc19.netlify.app/'
-]
-app.use(
-  cors({
-    origin: function (origin, callback) {
-      // Allow requests with no origin (like Postman) or from allowed origins
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error('Not allowed by CORS'));
-      }
-    },
-    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allow specific methods
-    credentials: true, // Allow cookies and headers like authorization
-    allowedHeaders: ['Content-Type', 'Authorization'], // Allow specific headers
-  })
-);
+const allowedOrigins = [
+  'http://localhost:3000',  // Development URL
+];
+app.use(cors({
+  origin: allowedOrigins, // Use the allowedOrigins array here
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'bearer'],
+}));
 //midddleware for parse the json
+app.options('*', cors());
 app.use(express.json());
 
 // MongoDB connection
