@@ -11,7 +11,7 @@ const port = process.env.PORT
 
 const allowedOrigins = [
   'http://localhost:3000',  // Development URL
-  'https://gleaming-melba-6b2be5.netlify.app'
+  'https://expneses-tracker.netlify.app'
 ];
 app.use(cors({
   origin: (origin, callback) => {
